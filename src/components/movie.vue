@@ -5,15 +5,6 @@ import axios from "axios";
 const select = ref();
 const movie = ref(null);
 
-// const getTMDBData = async (id) => {
-//   return (
-//     await axios.get(
-//       `https://api.themoviedb.org/3/movie/${id}?api_key=${
-//         import.meta.env.VITE_API_KEY
-//       }&language=en-US&adult=false`
-//     )
-//   ).data;
-// };
 const getTMDBData = async (id) => {
   return (
     await axios.get(
@@ -28,13 +19,13 @@ const findMovie = async () => {
   movie.value = await getTMDBData(select.value);
 };
 
-// const hasTrailer = () => {
-//   return (
-//     movie.value && movie.value.videos && movie.value.videos.results.length > 0
-//   );
-// };
 const hasTrailer = () => {
-  return movie.value && movie.value.videos && movie.value.videos.results && movie.value.videos.results.length > 0;
+  return (
+    movie.value &&
+    movie.value.videos &&
+    movie.value.videos.results &&
+    movie.value.videos.results.length > 0
+  );
 };
 
 const getTrailerUrl = () => {
@@ -46,18 +37,9 @@ const getTrailerUrl = () => {
       return `https://www.youtube.com/embed/${trailer.key}`;
     }
   }
-  return ""; // Return an empty string if there is no trailer
+  return "";
 };
 
-// const openTrailer = () => {
-//   const trailerUrl = getTrailerUrl();
-//   if (trailerUrl) {
-//     window.open(trailerUrl);
-//   } else if (hasTrailer()) {
-//     const trailerKey = movie.value.videos.results[0].key;
-//     window.open(`https://www.youtube.com/watch?v=${trailerKey}`, "_blank");
-//   }
-// };
 const openTrailer = () => {
   const trailerUrl = getTrailerUrl();
   if (trailerUrl) {
@@ -99,14 +81,18 @@ const openTrailer = () => {
       <button @click="findMovie" id="getMovie">Get</button>
     </div>
 
-      <div class="movieInfo">
-    <div v-if="movie" class="moviePoster">
-      <img :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`" />
-        </div>
-    <div v-if="hasTrailer()" class="trailer">
-      <button @click="openTrailer">Watch Trailer</button>
-      <iframe v-if="getTrailerUrl()" :src="getTrailerUrl()" allowfullscreen></iframe>
-    </div>
+    <div class="movieInfo">
+      <div v-if="movie" class="moviePoster">
+        <img :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`" />
+      </div>
+      <div v-if="hasTrailer()" class="trailer">
+        <button @click="openTrailer">Watch Trailer</button>
+        <iframe
+          v-if="getTrailerUrl()"
+          :src="getTrailerUrl()"
+          allowfullscreen
+        ></iframe>
+      </div>
       <div v-else>
         <iframe :src="trailerKey()" v-if="hasTrailer()"></iframe>
       </div>
