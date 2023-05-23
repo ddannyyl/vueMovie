@@ -46,7 +46,7 @@ const openTrailer = () => {
     window.open(trailerUrl, "_blank");
   } else if (hasTrailer()) {
     const trailerKey = movie.value.videos.results[0].key;
-    window.open(`https://www.youtube.com/watch?v=${trailerKey}`, "_blank");
+    window.open(`https://www.youtube.com/watch?v=${trailerKey}`);
   }
 };
 </script>
@@ -114,28 +114,99 @@ const openTrailer = () => {
 
 <style scoped>
 * {
-  font-family: "Poppins", sans-serif;
-  padding: 0;
-  margin: 0;
   box-sizing: border-box;
-  background-color: rgb(220, 240, 215);
+  margin: 0;
+  padding: 0;
 }
 
-.navBar {
-  position: relative;
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #c2e4cc;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+header {
   text-align: center;
+  margin-bottom: 20px;
 }
 
-img {
-  width: 300px;
+h1 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 10px;
 }
 
-button {
-  border-radius: 0.5rem;
-  color: rgb(0, 0, 0);
-  padding: 0.5rem;
-  align-self: end;
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.movieInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  background-color: #fac1e0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.moviePoster img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.details {
+  padding: 20px;
+}
+
+.movieDetails h1 {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.movieDetails p {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.watchTrailerButton {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
   font-weight: bold;
-  border: 2px solid black;
+  text-transform: uppercase;
+  color: #fff;
+  background-color: #ff5555;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.watchTrailerButton:hover {
+  background-color: #ff3333;
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 10px;
+  }
+
+  .movieInfo {
+    width: 100%;
+  }
 }
 </style>
