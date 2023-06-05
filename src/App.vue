@@ -3,7 +3,7 @@ import HelloWorld from "./components/movie.vue";
 </script>
 
 <template>
-  <HelloWorld/>
+  <HelloWorld />
 </template>
 
 <style scoped></style>
