@@ -1,9 +1,9 @@
 <script setup>
-import HelloWorld from "./components/movie.vue";
+import movie from "./components/movie.vue";
 </script>
 
 <template>
-  <HelloWorld />
+  <movie />
 </template>
 
 <style scoped></style>
